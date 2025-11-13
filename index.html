@@ -1,114 +1,1050 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shop Anchan</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chandan Kumar Singh | SR. EXECUTIVE HR</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f9fa;
+            color: #1a1a1a;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* --- Particle Canvas Background --- */
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* --- Navigation Styling --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(220, 53, 69, 0.2);
+            box-shadow: 0 4px 20px rgba(220, 53, 69, 0.1);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            text-shadow: none;
+            position: relative;
+            padding: 0.3rem 0;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #dc3545, #ff6b6b);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #dc3545;
+            text-shadow: none;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* --- Container & Section Styling --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #dc3545, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            letter-spacing: -1px;
+        }
+        
+        /* --- Hero Section Styling --- */
+        #home {
+            text-align: center;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: none;
+            color: #1a1a1a;
+            letter-spacing: -2px;
+            line-height: 1.2;
+        }
+        
+        .hero-content h1 .typing-text {
+            border-right: 3px solid #dc3545;
+            animation: blink 0.7s step-end infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: #dc3545; }
+            51%, 100% { border-color: transparent; }
+        }
+        
+        .hero-content h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #dc3545;
+            margin-bottom: 2.5rem;
+            text-shadow: none;
+            letter-spacing: 3px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, #dc3545, #ff6b6b);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(220, 53, 69, 0.5), 0 0 60px rgba(255, 107, 107, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 50px rgba(220, 53, 69, 0.8), 0 0 100px rgba(255, 107, 107, 0.5);
+        }
+        
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* --- About Section Styling --- */
+        #about .about-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .profile-photo {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 5px solid #dc3545;
+            box-shadow: 0 0 40px rgba(220, 53, 69, 0.6), 0 0 80px rgba(255, 107, 107, 0.3);
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+        
+        .profile-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px rgba(220, 53, 69, 0.8), 0 0 120px rgba(255, 107, 107, 0.5);
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+        }
+        
+        .about-text p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #333333;
+            text-shadow: none;
+        }
+        
+        /* --- Expertise Section Styling --- */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            width: 100%;
+        }
+        
+        .expertise-category {
+            background: #ffffff;
+            border: 1px solid rgba(220, 53, 69, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.08);
+        }
+        
+        .expertise-category:hover {
+            background: #fff5f5;
+            border-color: rgba(220, 53, 69, 0.5);
+            box-shadow: 0 8px 20px rgba(220, 53, 69, 0.15);
+            transform: translateY(-5px);
+        }
+        
+        .expertise-category h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: #dc3545;
+            text-shadow: none;
+        }
+        
+        .skill-item {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .skill-name {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            color: #333333;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        @keyframes fillBar {
+            from { width: 0; }
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #dc3545, #ff6b6b);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(220, 53, 69, 0.4);
+            animation: fillBar 1.5s ease forwards;
+            transform-origin: left;
+        }
+        
+        /* --- Project Card Styling --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            width: 100%;
+        }
+        
+        .project-card {
+            background: #ffffff;
+            border: 1px solid rgba(220, 53, 69, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 16px rgba(220, 53, 69, 0.1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .project-card:hover {
+            border-color: rgba(220, 53, 69, 0.6);
+            box-shadow: 0 12px 24px rgba(220, 53, 69, 0.15);
+        }
+        
+        .project-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .project-info {
+            padding: 2rem;
+        }
+        
+        .project-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #dc3545;
+            text-shadow: none;
+        }
+        
+        .project-info p {
+            font-size: 1rem;
+            color: #555555;
+            line-height: 1.7;
+        }
+        
+        /* --- Timeline Styling --- */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, #dc3545, #ff6b6b);
+            box-shadow: 0 0 20px rgba(220, 53, 69, 0.5);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            width: 100%;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 0;
+            margin-right: auto;
+            padding-right: 3rem;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+            margin-right: 0;
+            padding-left: 3rem;
+            text-align: left;
+        }
+        
+        .timeline-content {
+            width: 50%;
+            background: #ffffff;
+            border: 1px solid rgba(220, 53, 69, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            background: #fff5f5;
+            border-color: rgba(220, 53, 69, 0.5);
+            box-shadow: 0 8px 20px rgba(220, 53, 69, 0.15);
+            transform: scale(1.02);
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #dc3545;
+            border-radius: 50%;
+            border: 4px solid #f8f9fa;
+            box-shadow: 0 0 20px rgba(220, 53, 69, 0.8);
+            z-index: 10;
+        }
+        
+        .timeline-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #dc3545;
+            text-shadow: none;
+        }
+        
+        .timeline-date {
+            font-size: 0.9rem;
+            color: #dc3545;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-shadow: none;
+        }
+        
+        .timeline-content p {
+            font-size: 1rem;
+            color: #555555;
+            line-height: 1.7;
+        }
+        
+        /* --- Contact Section Styling --- */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.2rem 2rem;
+            background: #ffffff;
+            border: 1px solid rgba(220, 53, 69, 0.2);
+            border-radius: 50px;
+            color: #333333;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.08);
+        }
+        
+        .contact-link:hover {
+            background: #fff5f5;
+            border-color: rgba(220, 53, 69, 0.6);
+            color: #dc3545;
+            text-shadow: none;
+            box-shadow: 0 8px 20px rgba(220, 53, 69, 0.15);
+            transform: translateY(-3px);
+        }
+        
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* --- Responsive Design --- */
+        @media (max-width: 1024px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .expertise-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px;
+                padding-left: 2rem;
+                padding-right: 2rem;
+                text-align: left;
+            }
+            
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            nav ul li a {
+                font-size: 0.85rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            section {
+                padding: 4rem 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 1.3rem;
+            }
+            
+            #about .about-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .profile-photo {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .expertise-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 50px);
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 1.1rem;
+                letter-spacing: 2px;
+            }
+            
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-    <a href="https://thirdnov.github.io/ShopAnchan">Shop Anchan</a>
-    </div>
-    <div class="hamburger" onclick="toggleMenu()">
-      <i class="fas fa-bars"></i>
-    </div>
-    <nav id="nav-menu">
-      <a href="#about-section">About</a>
-      <a href="#services-section">Services</a>
-      <a href="https://wa.me/919717113764?text=Hey%20I'm%20interested%20in%20one%20of%20your%20products:%20%20%20%20%20%20and%20I%20want%20to%20know%20ways%20to%20earn%20and%20keep%20myself%20healthy." target="_blank" class="whatsapp-link">
-        <i class="fab fa-whatsapp"></i> Anchan Store
-      </a>
+    <!-- Particle Canvas Background -->
+    <canvas id="particleCanvas"></canvas>
+    
+    <!-- NAVIGATION -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#initiatives">Initiatives</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </nav>
-  </header>
-  
-  
-  <section id="product-section" class="section">
-    <div class="product-header">  
-      <h2>Find the product Made For You..💖</h2>
-      <div class="filter-search-container">
-        <div class="filter-container">
-          <label for="product-filter">Filter:</label>
-          <select id="product-filter" onchange="filterProducts()">
-            <option value="all">All</option>
-            <option value="Health & Wellness">Health & Wellness</option>
-            <option value="Personal Care">Personal Care</option>
-            <option value="Make-Up">Make-Up</option>
-            <option value="Premium Skin Care">Premium Skin Care</option>
-          </select>
+    
+    <!-- HERO SECTION START -->
+    <section id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1><span class="typing-text" id="typingText"></span></h1>
+                <h2>SR. EXECUTIVE HR</h2>
+                <!-- IMPORTANT: Ensure 'Chandan Singh Resume.pdf' is in the same folder as this HTML file -->
+                <a href="Chandan Singh Resume.pdf" download="Chandan_Singh_Resume.pdf" class="cta-button">Download Resume</a>
+            </div>
         </div>
-        <div class="search-container">
-          <input type="text" id="product-search" placeholder="Search products..." />
-          <button onclick="searchProducts()">Search</button>
+    </section>
+    <!-- HERO SECTION END -->
+    
+    <!-- ABOUT SECTION START -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Professional Summary</h2>
+            <div class="about-content">
+                <img src="Chandan.JPEG" alt="Chandan Kumar Singh" class="profile-photo">
+                <div class="about-text">
+                    <p>Dedicated and performance-driven Human Resources Executive with strong experience in managing end-to-end HR operations, payroll, and compliance processes. Skilled in HRMS systems, employee engagement, and workforce management, with proven ability to streamline administrative workflows and ensure statutory compliance. Known for implementing structured processes, driving policy improvements, and fostering a disciplined yet employee-friendly workplace environment.</p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  
-    <div id="product-list" class="product-list">
-        <!-- Sample Products -->
-        <a href="Glucosamine_P1/Glucosamine_P1.html" class="product-link">
-          <div class="product-card" data-category="Health & Wellness">
-            <img src="Glucosamine_P1/Glucosamine_P1.jpg" alt="Health & Wellness" />
-            <h3>Vestige Glucosamine</h3>
-            <p>Click To know more.</p>
-          </div>
-          </a>
-      <a href="Flaxoil_P2.html" class="product-link">
-          <div class="product-card" data-category="Health & Wellness">
-            <img src="Flaxoil_P2/Flaxoil_P2.jpg" alt="Health & Wellness" />
-            <h3>Vestige Glucosamine</h3>
-            <p>Click To know more.</p>
-          </div>
-          </a>
-          
-        <!-- Add more products as needed -->
-      </div>
-      
-  </section>
-  
-
-
-
-  <footer class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="footer-col">
-          <h4>Contact through WhatsApp</h4>
-        <a href="https://wa.me/919717113764?text=Hey%20I'm%20interested%20in%20one%20of%20your%20products:%20%20%20%20%20%20and%20I%20want%20to%20know%20ways%20to%20earn%20and%20keep%20myself%20healthy." target="_blank" class="whatsapp-link">
-        <i class="fab fa-whatsapp"></i> Anchan Store
-        </a>
+    </section>
+    <!-- ABOUT SECTION END -->
+    
+    <!-- EXPERTISE SECTION START -->
+    <section id="expertise">
+        <div class="container">
+            <h2 class="section-title">Areas of Expertise</h2>
+            <div class="expertise-grid">
+                <div class="expertise-category">
+                    <h3>Operations</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">HR Operations Management</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Payroll, Leave, &amp; Attendance</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 92%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="expertise-category">
+                    <h3>Systems &amp; Tools</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">HRMS &amp; Software Tools</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">E-Pay</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Savior</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Excel VBA</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 88%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">MS Office Suite</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="expertise-category">
+                    <h3>Compliance</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">Statutory Compliance (PF, ESIC)</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 93%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Labor Laws</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="expertise-category">
+                    <h3>Talent</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">Recruitment &amp; Onboarding</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 88%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Employee Relations &amp; Engagement</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="expertise-category">
+                    <h3>Strategy</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">SOP Implementation</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 92%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Policy Development</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 87%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Analytical &amp; Process Optimization</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="footer-col">
-          <h4>Follow us</h4>
-          <div class="social-links">
-            <a href="https://www.facebook.com/people/Anchan/61572698170789/"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/__.anchan.__31/"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.youtube.com/@Anchan_Vestige"><i class="fab fa-youtube"></i></a>
-          </div>
+    </section>
+    <!-- EXPERTISE SECTION END -->
+    
+    <!-- INITIATIVES SECTION START -->
+    <section id="initiatives">
+        <div class="container">
+            <h2 class="section-title">Key Initiatives</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/f0f0f0/dc3545?text=Payroll+System" alt="Centralized Payroll & Attendance System">
+                    <div class="project-info">
+                        <h3>Centralized Payroll &amp; Attendance System</h3>
+                        <p>Successfully implemented centralized attendance and payroll tracking across multiple company locations, integrating HRMS-based attendance validation.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/f0f0f0/dc3545?text=HR+SOPs" alt="HR Process Standardization">
+                    <div class="project-info">
+                        <h3>HR Process Standardization (SOPs)</h3>
+                        <p>Contributed to the creation of new SOPs that streamlined communication between head office and regional HR teams, ensuring procedural consistency.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/f0f0f0/dc3545?text=Compliance+Automation" alt="Compliance & Automation">
+                    <div class="project-info">
+                        <h3>Compliance &amp; Automation</h3>
+                        <p>Automated attendance validation and MIS reporting, reducing manual work and error rates while ensuring full PF &amp; ESIC compliance.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="footer-col">
-          <h4>Back to Top</h4>
-          <a href="#" class="back-to-top">↑</a>
+    </section>
+    <!-- INITIATIVES SECTION END -->
+    
+    <!-- EXPERIENCE SECTION START -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Career Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>HR Executive | Brawn Laboratories Ltd.</h3>
+                        <div class="timeline-date">June 2025 - Present</div>
+                        <p>Managing multi-location HR operations, overseeing contractual workforce management via HRMS, supervising end-to-end payroll, and administering EPFO/ESIC compliance.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>HR &amp; Admin Executive | Motherson Sumi Wiring India Ltd.</h3>
+                        <div class="timeline-date">May 2023 - June 2025</div>
+                        <p>Developed a strong foundation in time office management, payroll processing, and statutory compliance. Conducted end-to-end recruitment, managed PF/ESIC, and handled NAPS processes.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="copyright">
-        <p>&copy; 2025 Anchan Store</p>
-      </div>
-    </div>
-  </footer>
-  <section id="about-section" class="section">
-    <h2>About Us</h2>
-    <p>At Vestige, we're passionate about providing high-quality products that enhance the lives of our customers.  We carefully formulate and source our products across a wide range of categories, including health and wellness, personal care, home care, and more, ensuring they meet the highest standards of quality and efficacy.  But Vestige is more than just exceptional products; it's a thriving community.  We believe in the power of human connection and the strength that comes from supporting one another.  Our direct selling model fosters meaningful relationships between our distributors and their customers, creating a network of shared success.  We're dedicated to providing not only outstanding products but also a nurturing and collaborative environment where our distributors can learn, grow, and achieve their dreams.At Vestige, we're passionate about providing high-quality products that enhance the lives of our customers.  We carefully formulate and source our products across a wide range of categories, including health and wellness, personal care, home care, and more, ensuring they meet the highest standards of quality and efficacy.  But Vestige is more than just exceptional products; it's a thriving community.  We believe in the power of human connection and the strength that comes from supporting one another.  Our direct selling model fosters meaningful relationships between our distributors and their customers, creating a network of shared success.  We're dedicated to providing not only outstanding products but also a nurturing and collaborative environment where our distributors can learn, grow, and achieve their dreams.</p>
-  </section>
-  
-  <section id="services-section" class="section">
-    <h2>Our Services</h2>
-    <p>Details about the services offered...</p>
-  </section>
-  <script src="script.js"></script>
+    </section>
+    <!-- EXPERIENCE SECTION END -->
+    
+    <!-- CONTACT SECTION START -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-links">
+                    <a href="mailto:Chandansingh22004@gmail.com" class="contact-link">
+                        <span>📧</span>
+                        <span>Chandansingh22004@gmail.com</span>
+                    </a>
+                    <a href="tel:+919717113764" class="contact-link">
+                        <span>📱</span>
+                        <span>+91 9717113764</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/chandan-kumar-singh" target="_blank" class="contact-link">
+                        <span>💼</span>
+                        <span>LinkedIn Profile</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CONTACT SECTION END -->
+    
+    <script>
+        // ====================================
+        // Particle Network Background System
+        // ====================================
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        const particles = [];
+        const particleCount = 40;
+        const connectionDistance = 150;
+        const mouseRadius = 200;
+        const mouse = { x: null, y: null };
+        
+        // Track mouse position
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+        
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+        
+        // Particle class
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 2 + 1;
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                // Bounce off edges
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                
+                // Keep within bounds
+                this.x = Math.max(0, Math.min(canvas.width, this.x));
+                this.y = Math.max(0, Math.min(canvas.height, this.y));
+            }
+            
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(220, 53, 69, 0.6)';
+                ctx.fill();
+            }
+        }
+        
+        // Initialize particles
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+        
+        // Draw connections between particles
+        function connectParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < connectionDistance) {
+                        ctx.strokeStyle = `rgba(220, 53, 69, 0.3)`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+                
+                // Connect to mouse - simplified
+                if (mouse.x !== null && mouse.y !== null) {
+                    const dx = particles[i].x - mouse.x;
+                    const dy = particles[i].y - mouse.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < mouseRadius) {
+                        ctx.strokeStyle = `rgba(220, 53, 69, 0.5)`;
+                        ctx.lineWidth = 1.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+        
+        // Animation loop
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            connectParticles();
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+        
+        // ====================================
+        // Typing Animation
+        // ====================================
+        const typingText = document.getElementById('typingText');
+        const text = "Hi, I'm Chandan Kumar Singh";
+        let charIndex = 0;
+        
+        function typeText() {
+            if (charIndex < text.length) {
+                typingText.textContent += text.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeText, 100);
+            }
+        }
+        
+        // Start typing after a brief delay
+        setTimeout(typeText, 500);
+        
+        // ====================================
+        // Intersection Observer for Scroll Animations
+        // ====================================
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections except home
+        const sections = document.querySelectorAll('section:not(#home)');
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        
+        // ====================================
+        // Smooth Scrolling
+        // ====================================
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                const navHeight = document.querySelector('nav').offsetHeight;
+                const targetPosition = targetSection.offsetTop - navHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // ====================================
+        // Project Card Hover - Simplified
+        // ====================================
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        projectCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+    </script>
 </body>
-
-  
 </html>
